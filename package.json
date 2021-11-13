@@ -3,16 +3,23 @@
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js"
+  },
   "dependencies": {
     "bcrypt": "^5.0.1",
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
-    "express-handlebars": "^6.0.0",
+    "express-handlebars": "5.3.4",
     "express-session": "^1.17.2",
     "express-validator": "^6.13.0",
     "passport": "^0.5.0",
     "passport-local": "^1.0.0",
     "sequelize": "^6.9.0",
     "sqlite3": "^5.0.2"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15"
   }
 }
