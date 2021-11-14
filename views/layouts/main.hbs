@@ -35,7 +35,8 @@
                         <a class="nav-link fw-bold me-2" href="/posts">{{user.username}}</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link fw-bold text-white me-1 btn btn-sm btn-danger" href="/logout">Logout</a>
+                        <a class="nav-link fw-bold text-white me-1 btn btn-sm btn-danger" href="/logout"
+                            onclick="return confirm('Are you sure to logout?');">Logout</a>
                     </li>
                     {{else}}
                     <li class="nav-item">

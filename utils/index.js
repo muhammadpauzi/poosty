@@ -6,10 +6,12 @@ const buildObjectValidation = (errors) => {
     return result;
 }
 
-const renderWithUserData = (req = {}, res = {}, view = '', data = {}) => {
+const renderWithUserDataAndFlash = (req = {}, res = {}, view = '', data = {}) => {
     data.user = req.user;
     data.isAuthenticated = req.isAuthenticated();
+    data.errorMessage = req.flash('error');
+    data.successMessage = req.flash('success');
     return res.render(view, data);
 }
 
-module.exports = { buildObjectValidation, renderWithUserData };
+module.exports = { buildObjectValidation, renderWithUserDataAndFlash };

@@ -1,8 +1,8 @@
 const { INDEX_TITLE } = require('../constants');
-const { renderWithUserData } = require('../utils');
+const { renderWithUserDataAndFlash } = require('../utils');
 
 const index = (req, res) => {
-    return renderWithUserData(req, res, 'index', { title: INDEX_TITLE, successMessage: req.flash('success') });
+    return renderWithUserDataAndFlash(req, res, 'index', { title: INDEX_TITLE });
 }
 
 module.exports = { index };

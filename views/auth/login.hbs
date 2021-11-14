@@ -8,6 +8,11 @@
                     {{errorMessage}}
                 </div>
                 {{/if}}
+                {{#if successMessage}}
+                <div class="alert alert-success" role="alert">
+                    {{successMessage}}
+                </div>
+                {{/if}}
                 <form action="" method="post">
                     <div class="mb-3">
                         <label for="username" class="form-label">Username</label>
