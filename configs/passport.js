@@ -13,5 +13,18 @@ module.exports = (passport) => {
             console.log(error);
             done(error);
         }
-    }))
+    }));
+
+    passport.serializeUser((user, done) => {
+        done(null, user.id);
+    });
+
+    passport.deserializeUser(async (id, done) => {
+        try {
+            const user = await User.findByPk(id);
+            done(null, user.toJSON());
+        } catch (error) {
+            done(error);
+        }
+    });
 }

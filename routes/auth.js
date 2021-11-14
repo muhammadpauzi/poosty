@@ -4,7 +4,7 @@ const passport = require('passport');
 const { validatorRegistration } = require('../validators/validatorAuth');
 
 router.get('/login', login);
-router.post('/login', passport.authenticate('local', { failureRedirect: '/login' }), loginPost);
+router.post('/login', passport.authenticate('local', { failureRedirect: '/login', failureFlash: 'Invalid username or password.', successFlash: 'Welcome!' }), loginPost);
 router.get('/registration', registration);
 router.post('/registration', validatorRegistration, registrationPost);
 

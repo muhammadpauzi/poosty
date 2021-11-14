@@ -4,7 +4,7 @@ const { buildObjectValidation } = require('../utils');
 const { User } = require('../models');
 
 const login = (req, res) => {
-    return res.render('auth/login', { title: LOGIN_TITLE });
+    return res.render('auth/login', { title: LOGIN_TITLE, errorMessage: req.flash('error') });
 }
 
 const loginPost = (req, res) => {
@@ -20,6 +20,7 @@ const registrationPost = async (req, res) => {
     if (!errors.isEmpty()) {
         return res.render('auth/registration', { title: REGISTRATION_TITLE, errors: buildObjectValidation(errors.mapped()) });
     }
+
     const { username, password } = req.body;
 
     try {

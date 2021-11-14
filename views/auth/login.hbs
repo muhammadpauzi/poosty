@@ -3,7 +3,11 @@
         <div class="card">
             <div class="card-body py-4">
                 <h1 class="card-title text-center mt-2 mb-3">Login</h1>
-
+                {{#if errorMessage}}
+                <div class="alert alert-danger" role="alert">
+                    {{errorMessage}}
+                </div>
+                {{/if}}
                 <form action="" method="post">
                     <div class="mb-3">
                         <label for="username" class="form-label">Username</label>

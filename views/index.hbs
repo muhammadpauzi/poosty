@@ -1,5 +1,10 @@
 <div class="row py-3">
     <div class="col-md-6 mx-auto">
+        {{#if successMessage}}
+        <div class="alert alert-success" role="alert">
+            {{successMessage}}
+        </div>
+        {{/if}}
         <h1>Home</h1>
     </div>
 </div>
