@@ -1,0 +1,21 @@
+<div class="row">
+    <div class="col-md-6 mx-auto">
+        <div class="card">
+            <div class="card-body py-4">
+                <h1 class="card-title text-center mt-2 mb-3">Create Post</h1>
+                <form action="" method="post">
+                    <div class="mb-3">
+                        <label for="content" class="form-label">Content</label>
+                        <textarea class="form-control {{#if errors.content }}is-invalid{{/if}}" id="content" rows="5"
+                            placeholder="What do you thing?" name="content"></textarea>
+                        <div class="invalid-feedback">
+                            {{errors.content}}
+                        </div>
+                    </div>
+
+                    <button class="btn btn-primary py-3 fw-bold w-100">Create Post</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
