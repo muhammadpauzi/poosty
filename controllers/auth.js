@@ -1,10 +1,10 @@
 const { LOGIN_TITLE, REGISTRATION_TITLE } = require('../constants');
 const { validationResult } = require('express-validator');
-const { buildObjectValidation } = require('../utils');
+const { buildObjectValidation, renderWithUserData } = require('../utils');
 const { User } = require('../models');
 
 const login = (req, res) => {
-    return res.render('auth/login', { title: LOGIN_TITLE, errorMessage: req.flash('error') });
+    return renderWithUserData(req, res, 'auth/login', { title: LOGIN_TITLE, errorMessage: req.flash('error') });
 }
 
 const loginPost = (req, res) => {
@@ -12,13 +12,13 @@ const loginPost = (req, res) => {
 }
 
 const registration = (req, res) => {
-    return res.render('auth/registration', { title: REGISTRATION_TITLE });
+    return renderWithUserData(req, res, 'auth/registration', { title: REGISTRATION_TITLE });
 }
 
 const registrationPost = async (req, res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
-        return res.render('auth/registration', { title: REGISTRATION_TITLE, errors: buildObjectValidation(errors.mapped()) });
+        return renderWithUserData(req, res, 'auth/registration', { title: REGISTRATION_TITLE, errors: buildObjectValidation(errors.mapped()) });
     }
 
     const { username, password } = req.body;

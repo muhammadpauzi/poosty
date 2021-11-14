@@ -24,12 +24,31 @@
             </button>
             <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
                 <ul class="navbar-nav">
+                    {{#if isAuthenticated }}
                     <li class="nav-item">
                         <a class="nav-link fw-bold" href="/">Home</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link fw-bold" href="/posts">Posts</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link fw-bold me-2" href="/posts">{{user.username}}</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link fw-bold text-white me-1 btn btn-sm btn-danger" href="/logout">Logout</a>
+                    </li>
+                    {{else}}
+                    <li class="nav-item">
+                        <a class="nav-link fw-bold me-2" href="/">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link fw-bold text-white me-1 btn btn-sm btn-primary" href="/login">Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link fw-bold btn btn-sm text-white btn-primary"
+                            href="/registration">Registration</a>
+                    </li>
+                    {{/if}}
                 </ul>
             </div>
         </div>

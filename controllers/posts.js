@@ -1,7 +1,8 @@
 const { POSTS_TITLE } = require("../constants")
+const { renderWithUserData } = require('../utils');
 
 const getPosts = (req, res) => {
-    return res.render('index', { title: POSTS_TITLE });
+    return renderWithUserData(req, res, 'index', { title: POSTS_TITLE });
 }
 
 module.exports = {
