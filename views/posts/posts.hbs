@@ -5,13 +5,22 @@
             {{successMessage}}
         </div>
         {{/if}}
-        <a href="/posts/create" class="btn btn-primary fw-bold">Create Post</a>
+        <a href="/posts/create" class="btn btn-primary fw-bold mb-3">Create Post</a>
         {{#each posts}}
-        <div class="card">
+        {{#dataValues}}
+        <div class="card card-post mb-1">
             <div class="card-body">
-                {{this.content}}
+                <div class="pb-2 d-block">
+                    <small class="fw-bold">{{User.dataValues.username}}</small>
+                    {{!-- <span>{{createdAt}}</span> --}}
+                    <span class="card-post-small-text d-block">{{fromNow createdAt}}</span>
+                </div>
+                <div>
+                    <p class="card-post-text">{{content}}</p>
+                </div>
             </div>
         </div>
+        {{/dataValues}}
         {{else}}
         <p class="text-danger text-center py-5 fw-bold">Posts does not exist.</p>
         {{/each}}

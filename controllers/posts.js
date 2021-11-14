@@ -1,10 +1,22 @@
 const { POSTS_TITLE, CREATE_POST_TITLE } = require("../constants");
-const { Post } = require("../models");
+const { Post, User } = require("../models");
 const { renderWithUserDataAndFlash, buildObjectValidation } = require('../utils');
 const { validationResult } = require('express-validator');
 
-const getPosts = (req, res) => {
-    return renderWithUserDataAndFlash(req, res, 'posts/posts', { title: POSTS_TITLE });
+const getPosts = async (req, res) => {
+    try {
+        const posts = await Post.findAll({
+            order: [['createdAt', 'DESC']],
+            include: {
+                model: User,
+                attributes: { exclude: ['password'] }
+            }
+        });
+        // return res.json(posts);
+        return renderWithUserDataAndFlash(req, res, 'posts/posts', { title: POSTS_TITLE, posts });
+    } catch (error) {
+        console.log(error);
+    }
 }
 
 const create = (req, res) => {
@@ -20,7 +32,7 @@ const createPost = async (req, res) => {
     const { content } = req.body;
 
     try {
-        await Post.create({ content });
+        await Post.create({ UserId: req.user.id, content });
         req.flash('success', 'Post created!');
         return res.redirect('/posts');
     } catch (error) {

@@ -17,7 +17,7 @@ const sessionStore = new SequelizeStore({
 });
 
 // set extenstion of handlebars
-app.engine('.hbs', exphbs({ defaultLayout: 'main', extname: '.hbs', helpers: './helpers/handlebars' }));
+app.engine('.hbs', exphbs({ defaultLayout: 'main', extname: '.hbs', helpers: require('./helpers/handlebars') }));
 app.set('view engine', '.hbs');
 
 app.use(express.static(join(__dirname, 'public')));
