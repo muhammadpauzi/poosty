@@ -5,9 +5,16 @@ const session = require('express-session');
 const passport = require('passport');
 const flash = require('connect-flash');
 const { join } = require('path');
+const db = require('./configs/database');
+const SequelizeStore = require('connect-session-sequelize')(session.Store);
 
 const app = express();
 const PORT = process.env.PORT || 5000;
+const sessionStore = new SequelizeStore({
+    db: db,
+    checkExpirationInterval: 15 * 60 * 1000,
+    expiration: 7 * 24 * 60 * 60 * 1000
+});
 
 // set extenstion of handlebars
 app.engine('.hbs', exphbs({ defaultLayout: 'main', extname: '.hbs', helpers: './helpers/handlebars' }));
@@ -21,6 +28,7 @@ app.use(session({
     secret: process.env.SECRET_SESSION,
     resave: false,
     saveUninitialized: false,
+    store: sessionStore
 }));
 app.use(flash());
 
