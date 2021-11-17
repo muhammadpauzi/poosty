@@ -18,6 +18,16 @@
                 <div>
                     <p class="card-post-text">{{content}}</p>
                 </div>
+                <div>
+                    {{#if (isLiked ../../user.id this)}}
+                    <button class="btn btn-sm text-primary btn-primary text-white btn-like" data-id="{{id}}">{{len
+                        Likes}} {{plural (len Likes)
+                        'Like'}}</button>
+                    {{else}}
+                    <button class="btn btn-sm text-primary btn-like" data-id="{{id}}">{{len Likes}} {{plural (len Likes)
+                        'Like'}}</button>
+                    {{/if}}
+                </div>
             </div>
         </div>
         {{/dataValues}}
