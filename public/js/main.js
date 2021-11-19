@@ -7,16 +7,9 @@ likeButtons.forEach(btn => {
         try {
             const res = await fetch(`/posts/${id}/like`, { method: "POST" });
             const data = await res.json();
-            if (data.liked) {
-                this.classList.add('btn-primary');
-                this.classList.add('text-white');
-            } else {
-                this.classList.remove('btn-primary');
-                this.classList.remove('text-white');
-            }
             const { likesCount } = await getLikes(id);
-            console.log(likesCount);
-            this.textContent = `${likesCount} ${likesCount == 1 ? 'Like' : 'Likes'}`
+            this.previousElementSibling.textContent = `${likesCount}`;
+            this.textContent = `${data.liked ? 'Unlike' : 'Like'}`;
         } catch (error) {
             console.error(error);
         }

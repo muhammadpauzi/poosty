@@ -75,10 +75,33 @@ const likePost = async (req, res) => {
     }
 }
 
+const deletePost = async (req, res) => {
+    const id = parseInt(req.params.id);
+    try {
+        const post = await Post.findByPk(id);
+        if (post) {
+            console.log("DELETE :", post.UserId, req.user.id);
+            if (post.UserId == req.user.id) {
+                post.destroy();
+                req.flash('success', 'Post deleted.');
+            } else {
+                req.flash('error', 'You don\' have permission to delete this post.');
+            }
+        } else {
+            req.flash('error', 'Post does not exist.');
+        }
+
+        return res.redirect('/posts');
+    } catch (error) {
+        console.log(error);
+    }
+}
+
 module.exports = {
     getPosts,
     createPost,
     create,
     like,
-    likePost
+    likePost,
+    deletePost
 }

@@ -1,5 +1,10 @@
 <div class="row">
     <div class="col-md-6 mx-auto">
+        {{#if errorMessage}}
+        <div class="alert alert-danger" role="alert">
+            {{errorMessage}}
+        </div>
+        {{/if}}
         {{#if successMessage}}
         <div class="alert alert-success" role="alert">
             {{successMessage}}
@@ -19,13 +24,24 @@
                     <p class="card-post-text">{{content}}</p>
                 </div>
                 <div>
-                    {{#if (isLiked ../../user.id this)}}
-                    <button class="btn btn-sm text-primary btn-primary text-white btn-like" data-id="{{id}}">{{len
-                        Likes}} {{plural (len Likes)
-                        'Like'}}</button>
-                    {{else}}
-                    <button class="btn btn-sm text-primary btn-like" data-id="{{id}}">{{len Likes}} {{plural (len Likes)
-                        'Like'}}</button>
+                    <div class="d-inline-block me-3">
+                        {{#if (isLiked ../../user.id this)}}
+                        <div class="like">
+                            <small class="like-count">{{len Likes}}</small>
+                            <a href="" class="link-primary text-decoration-none btn-like" data-id="{{id}}">Unlike</a>
+                        </div>
+                        {{else}}
+                        <div class="like">
+                            <small class="like-count">{{len Likes}}</small>
+                            <a href="" class="link-primary text-decoration-none btn-like" data-id="{{id}}">
+                                Like</a>
+                        </div>
+                        {{/if}}
+                    </div>
+                    {{#if (isSame UserId ../../user.id)}}
+                    <form action="/posts/{{id}}/delete" method="post" class="d-inline-block">
+                        <button class="btn btn-danger btn-sm">delete</button>
+                    </form>
                     {{/if}}
                 </div>
             </div>
