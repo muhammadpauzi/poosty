@@ -33,7 +33,9 @@
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButtonPost">
                             <li>
                                 <form action="/posts/{{id}}/delete" method="post" class="d-block w-100">
-                                    <button class="dropdown-item">Delete this post</button>
+                                    <button class="dropdown-item"
+                                        onclick="return confirm('Are you sure to delete this post?');">Delete this
+                                        post</button>
                                 </form>
                             </li>
                         </ul>
