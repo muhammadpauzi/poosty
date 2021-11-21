@@ -42,6 +42,7 @@ app.use('/', require('./routes/index'));
 app.use('/', require('./routes/auth'));
 app.use('/posts', require('./routes/posts'));
 app.use('/users', require('./routes/users'));
+app.use('/profile', require('./routes/profile'));
 
 app.listen(PORT, () => {
     console.log(`Server is running on http://localhost:${PORT}`);

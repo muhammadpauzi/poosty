@@ -1,0 +1,89 @@
+<div class="row">
+    <div class="col-md-6 mx-auto">
+        {{#if successMessage}}
+        <div class="alert alert-success" role="alert">
+            {{successMessage}}
+        </div>
+        {{/if}}
+        <div class="card card-post py-5 mb-5">
+            <div class="card-body">
+                <div class="d-block mb-4 text-center">
+                    <h1 class="fw-bold mb-2">{{user.name}}</h1>
+                    <h5 class="fw-light">{{user.username}}</h5>
+                </div>
+                <div class="text-center">
+                    <a href="/profile/edit" class="btn btn-primary btn-sm fw-bold">Edit Profile</a>
+                </div>
+                {{!-- <div class="text-muted d-flex align-items-center justify-content-center gap-1">
+                    <div class="bg-light border rounded p-2 px-3 text-center fw-bold">{{len likes}} {{plural (len likes)
+                        'Like'}}</div>
+                    <div class="bg-light border rounded p-2 px-3 text-center fw-bold">{{len posts}} {{plural (len posts)
+                        'Post'}}</div>
+                </div> --}}
+            </div>
+        </div>
+
+        <div class="fw-light mb-3">
+            <h5 class="fw-light"><span class="fw-bold">{{user.username}}'s</span> posts</h5>
+            <small>Have {{len posts}} <span class="fw-bold">{{plural (len posts) 'Post'}}</span></small>
+        </div>
+
+        {{#each posts}}
+        {{#dataValues}}
+        <div class="card card-post mb-1">
+            <div class="card-body">
+                <div class="d-flex align-items-center justify-content-between">
+                    <div class="pb-2 d-block">
+                        {{!-- <small class="fw-bold"><a
+                                href="/users/{{User.dataValues.username}}">{{User.dataValues.username}}</a></small> --}}
+                        {{!-- <span>{{createdAt}}</span> --}}
+                        <span class="card-post-small-text d-block">{{fromNow createdAt}}</span>
+                    </div>
+                    {{#if (isSame UserId ../../user.id)}}
+                    <div class="dropdown">
+                        <button class="btn btn-sm" type="button" id="dropdownMenuButtonPost" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                                <path
+                                    d="M12 10c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0-6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 12c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z" />
+                            </svg>
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButtonPost">
+                            <li>
+                                <form action="/posts/{{id}}/delete" method="post" class="d-block w-100">
+                                    <button class="dropdown-item"
+                                        onclick="return confirm('Are you sure to delete this post?');">Delete this
+                                        post</button>
+                                </form>
+                            </li>
+                        </ul>
+                    </div>
+                    {{/if}}
+                </div>
+                <div>
+                    <p class="card-post-text">{{content}}</p>
+                </div>
+                <div>
+                    <div class="d-inline-block me-3">
+                        {{#if (isLiked ../../user.id this)}}
+                        <div class="like">
+                            <small class="like-count">{{len Likes}}</small>
+                            <a href="" class="link-primary text-decoration-none btn-like" data-id="{{id}}">Unlike</a>
+                        </div>
+                        {{else}}
+                        <div class="like">
+                            <small class="like-count">{{len Likes}}</small>
+                            <a href="" class="link-primary text-decoration-none btn-like" data-id="{{id}}">
+                                Like</a>
+                        </div>
+                        {{/if}}
+                    </div>
+                </div>
+            </div>
+        </div>
+        {{/dataValues}}
+        {{else}}
+        <p class="text-danger text-center py-5 fw-bold">Posts does not exist.</p>
+        {{/each}}
+    </div>
+</div>
