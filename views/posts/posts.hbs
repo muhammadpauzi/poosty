@@ -15,10 +15,30 @@
         {{#dataValues}}
         <div class="card card-post mb-1">
             <div class="card-body">
-                <div class="pb-2 d-block">
-                    <small class="fw-bold">{{User.dataValues.username}}</small>
-                    {{!-- <span>{{createdAt}}</span> --}}
-                    <span class="card-post-small-text d-block">{{fromNow createdAt}}</span>
+                <div class="d-flex align-items-center justify-content-between">
+                    <div class="pb-2 d-block">
+                        <small class="fw-bold">{{User.dataValues.username}}</small>
+                        {{!-- <span>{{createdAt}}</span> --}}
+                        <span class="card-post-small-text d-block">{{fromNow createdAt}}</span>
+                    </div>
+                    {{#if (isSame UserId ../../user.id)}}
+                    <div class="dropdown">
+                        <button class="btn btn-sm" type="button" id="dropdownMenuButtonPost" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                                <path
+                                    d="M12 10c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0-6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 12c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z" />
+                            </svg>
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButtonPost">
+                            <li>
+                                <form action="/posts/{{id}}/delete" method="post" class="d-block w-100">
+                                    <button class="dropdown-item">Delete this post</button>
+                                </form>
+                            </li>
+                        </ul>
+                    </div>
+                    {{/if}}
                 </div>
                 <div>
                     <p class="card-post-text">{{content}}</p>
@@ -38,11 +58,6 @@
                         </div>
                         {{/if}}
                     </div>
-                    {{#if (isSame UserId ../../user.id)}}
-                    <form action="/posts/{{id}}/delete" method="post" class="d-inline-block">
-                        <button class="btn btn-danger btn-sm">delete</button>
-                    </form>
-                    {{/if}}
                 </div>
             </div>
         </div>
