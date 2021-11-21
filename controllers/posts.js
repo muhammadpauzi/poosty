@@ -59,14 +59,14 @@ const likePost = async (req, res) => {
     const id = parseInt(req.params.id);
     try {
         const post = await Post.findOne({ where: { id }, include: Like });
-        const like = await Like.findOne({ where: { user_id: req.user.id, post_id: id } });
+        const like = await Like.findOne({ where: { UserId: req.user.id, PostId: id } });
         if (!post) {
             return res.status(404).json({ message: "POST DOES NOT EXITS." });
         } else if (like) {
             like.destroy();
             return res.status(200).json({ message: "UNLIKED", liked: false });
         } else {
-            const newLike = await Like.create({ user_id: req.user.id, post_id: id, PostId: id });
+            const newLike = await Like.create({ UserId: req.user.id, PostId: id });
             return res.status(201).json({ message: "LIKED", liked: true });
         }
     } catch (error) {

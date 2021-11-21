@@ -17,7 +17,8 @@
             <div class="card-body">
                 <div class="d-flex align-items-center justify-content-between">
                     <div class="pb-2 d-block">
-                        <small class="fw-bold">{{User.dataValues.username}}</small>
+                        <small class="fw-bold"><a
+                                href="/users/{{User.dataValues.username}}">{{User.dataValues.username}}</a></small>
                         {{!-- <span>{{createdAt}}</span> --}}
                         <span class="card-post-small-text d-block">{{fromNow createdAt}}</span>
                     </div>

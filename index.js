@@ -41,6 +41,7 @@ require('./configs/passport')(passport);
 app.use('/', require('./routes/index'));
 app.use('/', require('./routes/auth'));
 app.use('/posts', require('./routes/posts'));
+app.use('/users', require('./routes/users'));
 
 app.listen(PORT, () => {
     console.log(`Server is running on http://localhost:${PORT}`);

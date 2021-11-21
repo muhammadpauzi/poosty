@@ -3,6 +3,7 @@ const Post = require('./Post');
 const Like = require('./Like');
 
 User.hasMany(Post);
+User.hasMany(Like);
 Post.belongsTo(User);
 Post.hasMany(Like);
 Like.belongsTo(Post);

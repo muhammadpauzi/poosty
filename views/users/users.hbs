@@ -1,0 +1,21 @@
+<div class="row">
+    <div class="col-md-6 mx-auto">
+        <h1>Users</h1>
+
+        {{#each users}}
+        {{#dataValues}}
+        <div class="card card-post mb-1">
+            <div class="card-body">
+                <small class="fw-bold mb-2 d-block"><a href="/users/{{username}}">{{username}}</a></small>
+                <div class="text-muted">
+                    <small class="pe-3">{{len Likes}} {{plural (len Likes) 'Like'}}</small>
+                    <small class="pe-3">{{len Posts}} {{plural (len Posts) 'Post'}}</small>
+                </div>
+            </div>
+        </div>
+        {{/dataValues}}
+        {{else}}
+        <p class="text-danger text-center py-5 fw-bold">Users does not exist.</p>
+        {{/each}}
+    </div>
+</div>
