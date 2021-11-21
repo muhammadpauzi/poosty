@@ -20,16 +20,13 @@ const registrationPost = async (req, res) => {
     if (!errors.isEmpty()) {
         return renderWithUserDataAndFlash(req, res, 'auth/registration', { title: REGISTRATION_TITLE, errors: buildObjectValidation(errors.mapped()) });
     }
-
     const { username, password } = req.body;
-
     try {
         await User.create({ username, name: username, password });
-        return res.redirect('/login');
+        req.flash('success', 'Your account successfully registered. Please login!');
     } catch (error) {
         console.log(error);
     }
-
     return res.redirect('/login');
 }
 
