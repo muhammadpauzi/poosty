@@ -1,6 +1,7 @@
 const { USERS_TITLE, USER_DETAIL_TITLE } = require('../constants');
 const { renderWithUserDataAndFlash } = require('../utils');
 const { User, Like, Post } = require('../models');
+const { Op } = require('sequelize');
 
 const users = async (req, res) => {
     try {
@@ -27,4 +28,23 @@ const detail = async (req, res) => {
     }
 }
 
-module.exports = { users, detail };
+const search = async (req, res) => {
+    const { keyword } = req.body;
+    try {
+        const users = await User.findAll({
+            where: {
+                username: {
+                    [Op.like]: `%${keyword}%`
+                },
+                name: {
+                    [Op.like]: `%${keyword}%`
+                }
+            }, order: [['username', 'ASC']]
+        });
+        return renderWithUserDataAndFlash(req, res, 'users/users', { title: USERS_TITLE, users });
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+module.exports = { users, detail, search };
