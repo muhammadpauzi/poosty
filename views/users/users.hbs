@@ -7,10 +7,12 @@
         <div class="card card-post mb-1">
             <div class="card-body">
                 <small class="fw-bold mb-2 d-block"><a href="/users/{{username}}">{{username}}</a></small>
-                <div class="text-muted">
-                    <small class="pe-3">{{len Likes}} {{plural (len Likes) 'Like'}}</small>
+                <span class="card-post-small-text d-block">Registered since {{fromNow createdAt}}</span>
+                {{!-- <div class="text-muted">
+                    {{Posts.Likes}}
+                    <small class="pe-3">{{len Posts.Likes}} {{plural (len Posts.Likes) 'Like'}}</small>
                     <small class="pe-3">{{len Posts}} {{plural (len Posts) 'Post'}}</small>
-                </div>
+                </div> --}}
             </div>
         </div>
         {{/dataValues}}
